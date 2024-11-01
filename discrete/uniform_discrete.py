@@ -1,4 +1,6 @@
 # Uniform Distribution on N points (N > 0)
+from math import exp
+
 
 class UniformDiscrete:
 
@@ -16,5 +18,15 @@ class UniformDiscrete:
 
   def variance(self):
     return (self.N**2 - 1) / 12
+
+  def moment_generating_function(self, t):
+    numerator = exp(t) * (exp(self.N * t) - 1)
+    denominator = self.N * (exp(t) - 1)
+    return numerator / denominator
+
+  def probability_generating_function(self, t):
+    numerator = t * ((t ** self.N) - 1)
+    denominator = self.N * (t - 1)
+    return numerator / denominator
 
 

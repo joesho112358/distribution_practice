@@ -1,6 +1,6 @@
 # Binomial with n >= 1 and 0 <= p <= 1
 # n identical repeated trials with probability p and failure q = 1 - p
-from math import comb
+from math import comb, exp
 
 
 class Binomial:
@@ -18,4 +18,10 @@ class Binomial:
 
   def variance(self):
     return self.n * self.p * self.q
+
+  def moment_generating_function(self, t):
+    return (1 - self.p + self.p * exp(t)) ** self.n
+
+  def probability_generating_function(self, t):
+    return (1 - self.p + self.p * t) ** self.n
 
